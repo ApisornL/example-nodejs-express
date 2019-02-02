@@ -22,9 +22,9 @@ jobs:
           name: "Build docker image and push to docker hub"
           command: |
             cp Dockerfile.production Dockerfile
-            docker build -t heriot/learning-devops-demo1:latest .
+            docker build -t heriot/learning-devops-demo1 .
             docker build -t heriot/learning-devops-demo1:${CIRCLE_SHA1} .
-            docker push heriot/learning-devops-demo1:latest                       
+            docker push heriot/learning-devops-demo1                      
             docker push heriot/learning-devops-demo1:${CIRCLE_SHA1}
 
       - run: echo Done
