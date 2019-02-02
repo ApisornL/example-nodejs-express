@@ -26,12 +26,12 @@ jobs:
           name: "Build docker image and push to docker hub"
           command: |
             cp Dockerfile.production Dockerfile
-            if["${CIRCLE_BRANCH" == "master"]; then
+            if[ "${CIRCLE_BRANCH}" == "master" ]; then
               docker build -t heriot/learning-devops-demo1 .
               docker build -t heriot/learning-devops-demo1:${CIRCLE_SHA1} .
               docker push heriot/learning-devops-demo1                      
               docker push heriot/learning-devops-demo1:${CIRCLE_SHA1}
-            elif["${CIRCLE_BRANCH" == "staging"]; then
+            elif[ "${CIRCLE_BRANCH}" == "staging" ]; then
               docker build -t heriot/learning-devops-demo1 .
               docker push heriot/learning-devops-demo1 
             else "This is ${CIRCLE_BRANCH}"
@@ -46,5 +46,5 @@ jobs:
                 etlweather/gaucho upgrade $RANCHER_EXAMPLE_NODEJS \
                 --imageUuid 'docker:heriot/learning-devops-demo1:latest'
                 --batch_size 3 --start_first \
-                --auto_complete -- timeout 1200
+                --auto_complete --timeout 1200
       - run: echo Done
